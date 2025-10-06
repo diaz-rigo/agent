@@ -9,17 +9,20 @@ const app = express();
 app.use((req, res, next) => {
   const allowedOrigins = [
     'http://localhost:4200',
-    'https://tu-dominio-angular.com' // reemplaza con tu dominio en producción
+    'https://app-print-sinlibreria.vercel.app' // reemplaza con tu dominio en producción
   ];
   const origin = req.headers.origin;
   
   if (allowedOrigins.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
   }
-  
+    res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, X-API-Key, X-Pairing-Token');
-  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, X-API-Key, X-Pairing-Token, Authorization');
+    
+  // res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  // res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, X-API-Key, X-Pairing-Token');
+  // res.header('Access-Control-Allow-Credentials', 'true');
   
   // Manejar preflight requests
   if (req.method === 'OPTIONS') {
